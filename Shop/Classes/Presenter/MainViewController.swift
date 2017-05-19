@@ -1,10 +1,3 @@
-//
-//  MainViewController.swift
-//  Shop
-//
-//  Created by Георгий Малюков on 29.09.15.
-//  Copyright © 2015 Georgiy Malyukov. All rights reserved.
-//
 
 class MainViewController : BaseViewController {
     
