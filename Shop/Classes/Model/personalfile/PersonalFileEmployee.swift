@@ -37,6 +37,14 @@ protocol PPersonalFileEmployee {
     func getDateOfEmployment() -> Date
 
     func setDateOfEmployment(_ date: Date)
+    //Department
+    func getDepartmentName() -> String
+
+    func setDepartmentName(_ name: String)
+    //position
+    func getPositionName() -> String
+
+    func setPositionName(_ name: String)
 
     //зарплата
     func getSalaryList() -> [Salary]
@@ -48,14 +56,14 @@ protocol PPersonalFileEmployee {
     //премии Awards
     func getAwards() -> [Award]
 
-    func addAward(_award: Award)
+    func addAward(_ award: Award)
 
     func removeAwardInIndex(_ index: Int)
 
     //награды Rewards
     //предупреждения Warnings
     //штрафы Fines
-    func getHistoryEmployeeInCompany() -> [Entry]
+    func getEntryList() -> [Entry]
 
     func addEntry(_ entry: Entry)
 
@@ -64,33 +72,106 @@ protocol PPersonalFileEmployee {
 
 class PersonalFileEmployee {
     let id: String
+    let name:String
     var head: PTreeNode?
-    var name: String
     var listSubjects: [PTreeNode]
 
-    init(_ name: String, _ head: PTreeNode?) {
-        self.id = Date.init().description
+
+    var dateOfEmployment: Date
+    var departmentName: String
+    var positionName: String
+    var salaryList: [Salary]
+    var awardList: [Award]
+    var entryList: [Entry]
+
+    init(
+            name: String,
+            departmentName: String,
+            positionName: String,
+            dateOfEmployment: Date,
+            head: PTreeNode?) {
+
+        self.id = ""
         self.head = head
         self.name = name
         self.listSubjects = [PTreeNode]()
+
+        self.dateOfEmployment=dateOfEmployment
+        self.departmentName = departmentName
+        self.positionName = positionName
+        self.salaryList=[Salary]()
+        self.awardList=[Award]()
+        self.entryList=[Entry]()
     }
 
 }
 
 
+extension PersonalFileEmployee: PPersonalFileEmployee {
+    func getDateOfEmployment() -> Date {
+        return dateOfEmployment
+    }
+
+    func setDateOfEmployment(_ date: Date) {
+        self.dateOfEmployment = date
+    }
+
+    func getDepartmentName() -> String {
+        return departmentName
+    }
+
+    func setDepartmentName(_ name: String) {
+        self.departmentName = name
+    }
+
+    func getPositionName() -> String {
+        return positionName
+    }
+
+    func setPositionName(_ name: String) {
+        self.positionName = name
+    }
+
+    func getSalaryList() -> [Salary] {
+        return salaryList
+    }
+
+    func addSalary(_ salary: Salary) {
+        salaryList.append(salary)
+    }
+
+    func removeSalaryForIndex(_ index: Int) {
+        salaryList.remove(at: index)
+    }
+
+    func getAwards() -> [Award] {
+        return awardList
+    }
+
+    func addAward(_ award: Award) {
+        awardList.append(award)
+    }
+
+    func removeAwardInIndex(_ index: Int) {
+        awardList.remove(at: index)
+    }
+
+    func getEntryList() -> [Entry] {
+        return entryList
+    }
+
+    func addEntry(_ entry: Entry) {
+        entryList.append(entry)
+    }
+
+    func removeEntryInIndex(_ index: Int) {
+        entryList.remove(at: index)
+    }
+
+}
 
 
-
-
-
-
-
-
-
-
-
-
-extension PersonalFileEmployee : PTreeNode{
+extension PersonalFileEmployee: PTreeNode {
 
     func getId() -> String {
         return id
