@@ -1,6 +1,5 @@
 import Foundation
 
-
 class Salary{
     let id: String
     var paidPeriod: String
