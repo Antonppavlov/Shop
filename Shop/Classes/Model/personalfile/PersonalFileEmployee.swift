@@ -11,7 +11,6 @@ protocol PTreeNode {
 
     func getHeadId() -> String?
 
-
     func getName() -> String //каждый элемент должен иметь свое имя
 
     func addSubjects(_ child: PTreeNode) // добавить дочерный элемент
@@ -68,11 +67,13 @@ protocol PPersonalFileEmployee {
     func addEntry(_ entry: Entry)
 
     func removeEntryInIndex(_ index: Int)
+
+    func getPeople() ->People
 }
 
 class PersonalFileEmployee {
     let id: String
-    let name:String
+    let people:People
     var head: PTreeNode?
     var listSubjects: [PTreeNode]
 
@@ -85,7 +86,7 @@ class PersonalFileEmployee {
     var entryList: [Entry]
 
     init(
-            name: String,
+            people: People,
             departmentName: String,
             positionName: String,
             dateOfEmployment: Date,
@@ -93,7 +94,7 @@ class PersonalFileEmployee {
 
         self.id = ""
         self.head = head
-        self.name = name
+        self.people = people
         self.listSubjects = [PTreeNode]()
 
         self.dateOfEmployment=dateOfEmployment
@@ -108,6 +109,10 @@ class PersonalFileEmployee {
 
 
 extension PersonalFileEmployee: PPersonalFileEmployee {
+    func getPeople() -> People {
+        return people
+    }
+
     func getDateOfEmployment() -> Date {
         return dateOfEmployment
     }
@@ -185,7 +190,7 @@ extension PersonalFileEmployee: PTreeNode {
     }
 
     func getName() -> String {
-        return name
+        return people.getName()
     }
 
     func addSubjects(_ child: PTreeNode) {

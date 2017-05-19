@@ -1,6 +1,6 @@
 import Foundation
 
-protocol PEmployee {
+protocol PPeople {
     func getName() -> String
     func setName(name: String)
     func getDateOfBirth() -> Date
@@ -11,7 +11,7 @@ protocol PEmployee {
     func setEducation(education: String)
 }
 
-class Employee: PEmployee {
+class People: PPeople {
     private var name: String
     private var dateOfBirth: Date
     private var sex: Bool
